@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
     public GameObject gameOverPanel;
     public GameObject tapToStartPanel;
     public GameObject scoreText;
+    public TMP_Text resultText;
 
     private bool gameStarted = false;
+
 
     void Start()
     {
@@ -37,11 +40,20 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+
+     public void WinGame(){
+        gameOverPanel.SetActive(true);
+        scoreText.SetActive(false);
+        resultText.text = "YOU WON!";
+        Time.timeScale = 0f;
+    }
+
+
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
         scoreText.SetActive(false);
-
+        resultText.text = "GAME OVER";
         Time.timeScale = 0f;
     }
 

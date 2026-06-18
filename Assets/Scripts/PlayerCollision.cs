@@ -7,12 +7,18 @@ public class PlayerCollision : MonoBehaviour
     public GameController gameController;
     public AudioSource collectionAudio;
     public AudioSource crashAudio;
+    public AudioSource winAudio;
 
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.CompareTag("Collectable")){
             collectionAudio.Play();
             Destroy(other.gameObject);
             Score.AddScore(1);
+        }
+        if(other.gameObject.CompareTag("Win")){
+            winAudio.Play();
+            gameController.WinGame();
+            PlayerScript.enabled = false;
         }
     }
     private void OnCollisionEnter(Collision collision){
